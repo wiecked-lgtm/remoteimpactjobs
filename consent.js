@@ -19,7 +19,7 @@
     window.dataLayer = window.dataLayer || [];
     window.gtag = function () { dataLayer.push(arguments); };
     gtag('js', new Date());
-    gtag('config', GA_ID);
+    gtag('config', GA_ID, { cookie_domain: location.hostname });
   }
 
   function removeGACookies() {
