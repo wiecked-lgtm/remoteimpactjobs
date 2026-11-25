@@ -1,7 +1,6 @@
-/* Google Analytics 4, loaded only after the visitor has agreed.
-   Replace GA_ID with your Measurement ID (G-...). */
+/* Google Tag Manager (with the GA4 Google tag inside), loaded only after the visitor has agreed. */
 (function () {
-  var GA_ID = 'G-P0E6VXH46V';
+  var GTM_ID = 'GTM-5MTQ39LX';
   var KEY = 'rij-analytics-consent';
   var isGerman = document.documentElement.lang === 'de';
   var policy = 'datenschutz.html';
@@ -10,24 +9,27 @@
   function save(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
 
   function loadGA() {
-    if (window.__gaLoaded || GA_ID.indexOf('XXXX') !== -1) return;
-    window.__gaLoaded = true;
+    if (window.__gtmLoaded) return;
+    window.__gtmLoaded = true;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
     var s = document.createElement('script');
     s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    s.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
     document.head.appendChild(s);
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = function () { dataLayer.push(arguments); };
-    gtag('js', new Date());
-    gtag('config', GA_ID, { cookie_domain: location.hostname });
   }
 
   function removeGACookies() {
     document.cookie.split(';').forEach(function (c) {
       var name = c.split('=')[0].trim();
       if (name.indexOf('_ga') === 0) {
-        var host = location.hostname.replace(/^www\./, '');
-        ['', '; domain=' + host, '; domain=.' + host].forEach(function (d) {
+        var parts = location.hostname.split('.');
+        var domains = [''];
+        for (var i = 0; i < parts.length - 1; i++) {
+          var d = parts.slice(i).join('.');
+          domains.push('; domain=' + d, '; domain=.' + d);
+        }
+        domains.forEach(function (d) {
           document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' + d;
         });
       }
