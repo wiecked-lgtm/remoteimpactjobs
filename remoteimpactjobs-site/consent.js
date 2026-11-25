@@ -1,7 +1,7 @@
 /* Google Analytics 4, loaded only after the visitor has agreed.
    Replace GA_ID with your Measurement ID (G-...). */
 (function () {
-  var GA_ID = 'G-XXXXXXXXXX';
+  var GA_ID = 'G-P0E6VXH46V';
   var KEY = 'rij-analytics-consent';
   var isGerman = document.documentElement.lang === 'de';
   var policy = 'datenschutz.html';
