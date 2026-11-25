@@ -21,10 +21,19 @@ body {
 a { color: var(--teal); text-decoration-color: var(--yellow); text-decoration-thickness: 2px; text-underline-offset: 3px; }
 a:hover { color: var(--teal-dark); }
 
-/* Hero */
-.hero { background: var(--teal); color: #fff; padding: 32px 0 52px; font-size: 1.05rem; }
-.brand { margin-bottom: 40px; }
-.brand img { display: block; width: 56px; height: auto; }
+/* Top navigation */
+.topnav { background: var(--teal); color: #fff; }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; padding-bottom: 16px; }
+.logo img { display: block; width: 48px; height: auto; }
+.links { display: flex; align-items: center; gap: 22px; }
+.links a { color: #fff; text-decoration: none; font-weight: 600; }
+.links a.active, .links a:hover { color: var(--yellow); }
+.links .nav-cta { color: var(--ink); }
+.links .nav-cta:hover { color: var(--ink); }
+.btn-sm { padding: 8px 14px; font-size: .9rem; }
+
+/* Hero (home) */
+.hero { background: var(--teal); color: #fff; padding: 28px 0 52px; font-size: 1.05rem; }
 .hero h1 { font-size: 2.15rem; line-height: 1.2; margin: 0 0 12px; letter-spacing: -0.015em; }
 .claim { margin: 0 0 32px; color: var(--yellow); font-weight: 600; }
 .signup {
@@ -34,6 +43,17 @@ a:hover { color: var(--teal-dark); }
 }
 .signup p { margin: 0; }
 .signup .btn { flex-shrink: 0; font-size: 1.05rem; }
+.proof { margin: 18px 0 0; opacity: .85; }
+.about-signup { margin-top: 36px; }
+.about-signup .signup { background: var(--mint); color: var(--ink); }
+
+/* Page header (inner pages) */
+.page-head { background: var(--teal); color: #fff; padding: 20px 0 40px; }
+.page-head h1 { font-size: 2.15rem; line-height: 1.2; margin: 0 0 8px; letter-spacing: -0.015em; }
+.page-head p { margin: 0; font-size: 1.05rem; }
+.page-head .eyebrow { color: var(--yellow); }
+.page-head .issue-title { font-size: 1.9rem; margin: 6px 0 4px; }
+.page-head .issue-date { color: rgba(255,255,255,.8); margin: 0; }
 
 /* Buttons */
 .btn {
@@ -84,15 +104,10 @@ main.wrap { padding-top: 48px; padding-bottom: 24px; }
 .wrap.legal { padding-top: 40px; padding-bottom: 24px; }
 .legal h1 { color: var(--teal); }
 .legal h2 { font-size: 1.15rem; margin-top: 28px; }
-.legal-head { background: var(--teal); padding: 18px 0; }
-.legal-head a { color: #fff; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; }
-.legal-head img { width: 40px; height: auto; }
 
 @media (max-width: 520px) {
   body { font-size: 16px; }
   .hero { padding: 22px 0 40px; }
-  .brand { margin-bottom: 32px; }
-  .hero h1 { font-size: 1.65rem; }
   .signup { flex-direction: column; align-items: flex-start; }
   .issue-title { font-size: 1.4rem; }
 }
@@ -109,3 +124,43 @@ main.wrap { padding-top: 48px; padding-bottom: 24px; }
 .consent-btns { display: flex; gap: 10px; flex-wrap: wrap; }
 .consent-btns .btn { border: 0; cursor: pointer; font-family: inherit; flex: 1 1 120px; }
 .linklike { background: none; border: 0; padding: 0; font: inherit; color: inherit; text-decoration: underline; cursor: pointer; }
+
+/* Sections */
+.section-title { font-size: 1.45rem; margin: 6px 0 18px; }
+.block { margin-top: 48px; }
+.how p { margin: 0 0 10px; }
+.tag { display: inline-block; font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--teal); margin-bottom: 4px; }
+.job .meta { font-weight: 700; font-size: .92rem; margin: 0 0 6px; }
+.job p { margin: 0 0 6px; }
+.job h3 { font-size: 1.08rem; margin: 0 0 4px; line-height: 1.35; }
+#top-jobs { margin-bottom: 22px; }
+.closed { opacity: .55; }
+.closed-label { color: #a33; font-weight: 700; }
+.issue-link {
+  display: block; text-decoration: none; color: var(--ink);
+  border: 2px solid var(--mint); border-radius: 10px; padding: 16px 20px; margin-bottom: 14px;
+}
+.issue-link:hover { border-color: var(--yellow); color: var(--ink); }
+.issue-link strong { display: block; font-size: 1.1rem; margin: 2px 0 6px; }
+.issue-link .issue-date { color: var(--muted); font-size: .9rem; margin: 0; }
+.issue-link .more { color: var(--teal); font-weight: 600; }
+
+/* Filters */
+.filters { display: flex; flex-wrap: wrap; gap: 14px 20px; align-items: flex-end; margin-bottom: 18px; }
+.filters label { display: flex; flex-direction: column; gap: 4px; font-weight: 700; font-size: .9rem; }
+.filters select { font: inherit; font-weight: 400; padding: 8px 10px; border: 2px solid var(--mint); border-radius: 8px; background: #fff; min-width: 180px; }
+.filters .check { flex-direction: row; align-items: center; gap: 8px; font-weight: 400; }
+.count { color: var(--muted); margin: 0 0 14px; }
+.empty { color: var(--muted); }
+
+/* Prose pages */
+.prose h2 { font-size: 1.3rem; color: var(--teal); margin: 32px 0 10px; }
+
+@media (max-width: 620px) {
+  .links { gap: 16px; }
+  .nav-cta { display: none; }
+  .page-head h1, .hero h1 { font-size: 1.65rem; }
+  .page-head .issue-title { font-size: 1.45rem; }
+  .filters select { min-width: 0; width: 100%; }
+  .filters label { flex: 1 1 100%; }
+}

@@ -3,7 +3,7 @@
   var GTM_ID = 'GTM-5MTQ39LX';
   var KEY = 'rij-analytics-consent';
   var isGerman = document.documentElement.lang === 'de';
-  var policy = 'datenschutz.html';
+  var policy = '/datenschutz';
 
   function read() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
   function save(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
