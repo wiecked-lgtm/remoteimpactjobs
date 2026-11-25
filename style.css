@@ -22,18 +22,18 @@ a { color: var(--teal); text-decoration-color: var(--yellow); text-decoration-th
 a:hover { color: var(--teal-dark); }
 
 /* Hero */
-.hero { background: var(--teal); color: #fff; padding: 56px 0 64px; text-align: center; }
-.hero-logo { width: 120px; height: auto; margin-bottom: 18px; }
-.hero h1 { font-size: 2.3rem; line-height: 1.15; margin: 0 0 14px; letter-spacing: -0.01em; }
-.hero h1 span { font-size: 0.62em; font-weight: 600; color: var(--yellow); }
-.claim { font-size: 1.15rem; max-width: 520px; margin: 0 auto 30px; opacity: .95; }
+.hero { background: var(--teal); color: #fff; padding: 32px 0 52px; font-size: 1.05rem; }
+.brand { margin-bottom: 40px; }
+.brand img { display: block; width: 56px; height: auto; }
+.hero h1 { font-size: 2.15rem; line-height: 1.2; margin: 0 0 12px; letter-spacing: -0.015em; }
+.claim { margin: 0 0 32px; color: var(--yellow); font-weight: 600; }
 .signup {
-  background: #fff; color: var(--ink);
-  border: 3px solid var(--yellow); border-radius: 12px;
-  padding: 22px 24px; max-width: 520px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  border-left: 4px solid var(--yellow); background: rgba(255,255,255,.08);
+  border-radius: 0 8px 8px 0; padding: 16px 20px;
 }
-.signup p { margin: 0 0 8px; }
-.signup .btn { margin-top: 8px; }
+.signup p { margin: 0; }
+.signup .btn { flex-shrink: 0; font-size: 1.05rem; }
 
 /* Buttons */
 .btn {
@@ -90,8 +90,10 @@ main.wrap { padding-top: 48px; padding-bottom: 24px; }
 
 @media (max-width: 520px) {
   body { font-size: 16px; }
-  .hero { padding: 40px 0 44px; }
-  .hero h1 { font-size: 1.8rem; }
+  .hero { padding: 22px 0 40px; }
+  .brand { margin-bottom: 32px; }
+  .hero h1 { font-size: 1.65rem; }
+  .signup { flex-direction: column; align-items: flex-start; }
   .issue-title { font-size: 1.4rem; }
 }
 
