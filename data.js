@@ -4,12 +4,15 @@
   category: "marketing" | "communications" | "also"
   deadline: "YYYY-MM-DD" (job disappears from /jobs after this day) or null for rolling / no deadline
   ukPermit: true adds "UK work permit required"
+  Embargo: an issue and its jobs appear on the site on the Friday after "date" (date + 3 days).
+  To show it on another day, add webFrom: "YYYY-MM-DD" to the issue.
 */
 window.RIJ = {
   ISSUES: [
     {
       n: 1,
       date: "2026-11-24",
+      webFrom: "2026-11-24",
       title: "Issue #1: 16 remote impact jobs in marketing and communications",
       intro: `
         <p><strong>Welcome to the very first issue of Remote Impact Jobs in Marketing &amp; Communications!</strong></p>

@@ -1,6 +1,20 @@
 /* Renders jobs and issues from data.js. No build step needed. */
 (function () {
-  var D = window.RIJ || { ISSUES: [], JOBS: [] };
+  var RAW = window.RIJ || { ISSUES: [], JOBS: [] };
+  /* Embargo: a new issue goes online on the Friday after it is sent (send date + 3 days),
+     unless the issue sets its own "webFrom": "YYYY-MM-DD". */
+  function webFrom(i) {
+    if (i.webFrom) return i.webFrom;
+    var d = new Date(i.date + 'T00:00:00'); d.setDate(d.getDate() + 3);
+    return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
+  }
+  function todayStr() {
+    var d = new Date();
+    return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
+  }
+  var LIVE = RAW.ISSUES.filter(function (i) { return webFrom(i) <= todayStr(); });
+  var liveNums = LIVE.map(function (i) { return i.n; });
+  var D = { ISSUES: LIVE, JOBS: RAW.JOBS.filter(function (j) { return liveNums.indexOf(j.issue) !== -1; }) };
   var page = document.body.getAttribute('data-page');
   var CAT_LABEL = { marketing: 'Marketing', communications: 'Communications', also: 'Also worth a look' };
 
