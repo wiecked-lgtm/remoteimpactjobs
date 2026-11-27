@@ -42,16 +42,18 @@
     var cls = j.category === 'communications' ? 'cm' : 'mk';
     var tag = opts.showCategory ? '<span class="tag">' + esc(CAT_LABEL[j.category]) + '</span>' : '';
     return '<div class="job ' + cls + (closed ? ' closed' : '') + '">' + tag +
-      '<h3>' + esc(j.title) + ' · ' + esc(j.org) + '</h3>' +
-      '<p class="meta">' + esc(j.field) + ' · ' + esc(j.meta) + (closed ? ' · <span class="closed-label">Closed</span>' : '') + '</p>' +
+      '<h3>' + esc(j.title) + '</h3>' +
+      '<p class="org">' + esc(j.org) + ' · ' + esc(j.field) + '</p>' +
+      '<p class="meta">' + esc(j.meta) + (closed ? ' · <span class="closed-label">Closed</span>' : '') + '</p>' +
       (j.desc ? '<p>' + esc(j.desc) + '</p>' : '') +
       (closed ? '' : '<a href="' + esc(j.url) + '" target="_blank" rel="noopener">View the role →</a>') +
       '</div>';
   }
   function jotw(j) {
-    return '<section class="jotw"><h2>⭐ Job of the week</h2>' +
-      '<h3>' + esc(j.title) + ' · ' + esc(j.org) + '</h3>' +
-      '<p class="meta">' + esc(CAT_LABEL[j.category]) + ' · ' + esc(j.field) + ' · ' + esc(j.meta) + '</p>' +
+    return '<section class="jotw"><p class="eyebrow">Job of the week</p>' +
+      '<h3>' + esc(j.title) + '</h3>' +
+      '<p class="org">' + esc(j.org) + ' · ' + esc(j.field) + '</p>' +
+      '<p class="meta">' + esc(CAT_LABEL[j.category]) + ' · ' + esc(j.meta) + '</p>' +
       '<p>' + esc(j.desc) + '</p>' +
       (isOpen(j) ? '<a class="btn btn-teal" href="' + esc(j.url) + '" target="_blank" rel="noopener">View the role</a>' : '<p class="closed-label">Closed</p>') +
       '</section>';
@@ -110,10 +112,17 @@
   if (page === 'issue') {
     var m = location.pathname.match(/issues\/(\d{4}-\d{2}-\d{2})/) || location.search.match(/d=(\d{4}-\d{2}-\d{2})/);
     var d = m ? m[1] : (latest() && latest().date);
-    var I = D.ISSUES.filter(function (i) { return i.date === d; })[0];
+    /* A direct link works from the send date (Tuesday). Until its web date (Friday)
+       the issue is not listed anywhere and asks search engines not to index it. */
+    var I = RAW.ISSUES.filter(function (i) { return i.date === d && i.date <= todayStr(); })[0];
     if (!I) { set('issue', '<p>This issue does not exist. <a href="/issues">Back to all issues</a></p>'); return; }
+    if (webFrom(I) > todayStr()) {
+      var robots = document.createElement('meta');
+      robots.name = 'robots'; robots.content = 'noindex';
+      document.head.appendChild(robots);
+    }
     document.title = I.title + ' · Remote Impact Jobs';
-    var n = I.n, J = jobsOf(n);
+    var n = I.n, J = RAW.JOBS.filter(function (j) { return j.issue === n; });
     var w = J.filter(function (j) { return j.jobOfWeek; });
     var mk = J.filter(function (j) { return j.category === 'marketing' && !j.jobOfWeek; });
     var cm = J.filter(function (j) { return j.category === 'communications' && !j.jobOfWeek; });

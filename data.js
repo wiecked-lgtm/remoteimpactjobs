@@ -19,7 +19,7 @@ window.RIJ = {
         <p>Every week, I collect remote roles in marketing and communications at organisations working on climate, democracy, culture, education and tech for good. All of them are open to people living in Europe, and I check each listing before it goes out.</p>
         <p>I'm Stephanie, a marketing and communications professional with more than 15 years of experience at NGOs, cultural institutions and start-ups. I started this newsletter because most remote job boards are built for the US, and good impact roles in Europe are hard to find.</p>
         <p><strong>This week: sixteen remote jobs, eight in marketing (including the job of the week) and eight in communications, plus two hybrid picks.</strong></p>`,
-      alsoTitle: "Also worth a look (hybrid)",
+      alsoTitle: "Also worth a look",
       practice: {
         title: "💡 Practice note: Do the WhatsApp maths before you pitch it",
         html: `
