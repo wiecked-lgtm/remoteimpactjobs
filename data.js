@@ -13,9 +13,9 @@ window.RIJ = {
       n: 1,
       date: "2026-11-24",
       webFrom: "2026-11-24",
-      title: "Issue #1: 16 remote impact jobs in marketing and communications",
+      title: "16 remote impact jobs in marketing and communications",
       intro: `
-        <p><strong>Welcome to the very first issue of Remote Impact Jobs in Marketing &amp; Communications!</strong></p>
+        <p><strong>Welcome to Remote Impact Jobs in Marketing &amp; Communications!</strong></p>
         <p>Every week, I collect remote roles in marketing and communications at organisations working on climate, democracy, culture, education and tech for good. All of them are open to people living in Europe, and I check each listing before it goes out.</p>
         <p>I'm Stephanie, a marketing and communications professional with more than 15 years of experience at NGOs, cultural institutions and start-ups. I started this newsletter because most remote job boards are built for the US, and good impact roles in Europe are hard to find.</p>
         <p><strong>This week: sixteen remote jobs, eight in marketing (including the job of the week) and eight in communications, plus two hybrid picks.</strong></p>`,
@@ -27,7 +27,7 @@ window.RIJ = {
           <p>If you want to test WhatsApp without that budget, start with a WhatsApp Channel. It is free and doesn't expose your followers' phone numbers. Use the paid API for messages that really need to land in someone's chat, and calculate the cost per send before you promise any results.</p>`
       },
       closing: `
-        <p><strong>This is the first issue, so your feedback really counts.</strong> <a href="mailto:mail@stephanie-wieck.com">Write to me</a> and tell me which roles or topics you would like to see more of.</p>
+        <p><strong>Your feedback really counts.</strong> <a href="mailto:mail@stephanie-wieck.com">Write to me</a> and tell me which roles or topics you would like to see more of.</p>
         <p>Know someone who should see this? Share this page. Thank you for reading.</p>`
     }
   ],

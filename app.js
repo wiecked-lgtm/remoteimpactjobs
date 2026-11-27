@@ -70,7 +70,7 @@
       .concat(lj.filter(function (j) { return j.category === 'communications'; }).slice(0, 2));
     set('top-jobs', top.map(function (j) { return card(j, { showCategory: true }); }).join(''));
     set('latest-issue',
-      '<a class="issue-link" href="/issues/' + L.n + '"><span class="issue-date">' + fmtDate(L.date) + '</span>' +
+      '<a class="issue-link" href="/issues/' + L.date + '"><span class="issue-date">' + fmtDate(L.date) + '</span>' +
       '<strong>' + esc(L.title) + '</strong><span class="more">Read this issue →</span></a>');
   }
 
@@ -101,25 +101,25 @@
   if (page === 'issues') {
     set('issue-list', D.ISSUES.map(function (i) {
       var count = jobsOf(i.n).filter(function (j) { return j.category !== 'also'; }).length;
-      return '<a class="issue-link" href="/issues/' + i.n + '"><span class="issue-date">' + fmtDate(i.date) + ' · ' + count + ' jobs</span>' +
+      return '<a class="issue-link" href="/issues/' + i.date + '"><span class="issue-date">' + fmtDate(i.date) + ' · ' + count + ' jobs</span>' +
         '<strong>' + esc(i.title) + '</strong><span class="more">Read this issue →</span></a>';
     }).join(''));
   }
 
   /* Single issue */
   if (page === 'issue') {
-    var m = location.pathname.match(/issues\/(\d+)/) || location.search.match(/n=(\d+)/);
-    var n = m ? parseInt(m[1], 10) : (latest() && latest().n);
-    var I = D.ISSUES.filter(function (i) { return i.n === n; })[0];
+    var m = location.pathname.match(/issues\/(\d{4}-\d{2}-\d{2})/) || location.search.match(/d=(\d{4}-\d{2}-\d{2})/);
+    var d = m ? m[1] : (latest() && latest().date);
+    var I = D.ISSUES.filter(function (i) { return i.date === d; })[0];
     if (!I) { set('issue', '<p>This issue does not exist. <a href="/issues">Back to all issues</a></p>'); return; }
     document.title = I.title + ' · Remote Impact Jobs';
-    var J = jobsOf(n);
+    var n = I.n, J = jobsOf(n);
     var w = J.filter(function (j) { return j.jobOfWeek; });
     var mk = J.filter(function (j) { return j.category === 'marketing' && !j.jobOfWeek; });
     var cm = J.filter(function (j) { return j.category === 'communications' && !j.jobOfWeek; });
     var al = J.filter(function (j) { return j.category === 'also'; });
     var line = '<img class="divider" src="/assets/dashed-line.png" alt="" aria-hidden="true">';
-    set('issue-head', '<p class="eyebrow">Issue #' + I.n + '</p><h1 class="issue-title">' + esc(I.title) + '</h1><p class="issue-date">' + fmtDate(I.date) + '</p>');
+    set('issue-head', '<p class="eyebrow">Weekly issue</p><h1 class="issue-title">' + esc(I.title) + '</h1><p class="issue-date">' + fmtDate(I.date) + '</p>');
     set('issue',
       I.intro +
       w.map(jotw).join('') +

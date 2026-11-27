@@ -1,7 +1,1 @@
-{
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "rewrites": [
-    { "source": "/issues/:n", "destination": "/issue" }
-  ]
-}
+{"cleanUrls":true,"trailingSlash":false,"redirects":[{"source":"/issues/1","destination":"/issues/2026-11-24","permanent":true}],"rewrites":[{"source":"/issues/:n","destination":"/issue"}]}
