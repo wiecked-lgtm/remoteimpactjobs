@@ -36,6 +36,12 @@
   function latest() { return D.ISSUES[0]; }
   function jobsOf(n) { return D.JOBS.filter(function (j) { return j.issue === n; }); }
 
+  /* Data for the job_click event in consent.js (sent only after consent) */
+  function issueDate(n) { var i = RAW.ISSUES.filter(function (x) { return x.n === n; })[0]; return i ? i.date : ''; }
+  function jobAttrs(j) {
+    return ' data-job="1" data-job-org="' + esc(j.org) + '" data-job-title="' + esc(j.title) + '" data-job-category="' + esc(j.category) +
+      '" data-issue-date="' + esc(issueDate(j.issue)) + '" data-featured="' + (j.featured ? 'yes' : 'no') + '"';
+  }
   function card(j, opts) {
     opts = opts || {};
     var closed = !isOpen(j);
@@ -46,7 +52,7 @@
       '<p class="org">' + esc(j.org) + ' · ' + esc(j.field) + '</p>' +
       '<p class="meta">' + esc(j.meta) + (closed ? ' · <span class="closed-label">Closed</span>' : '') + '</p>' +
       (j.desc ? '<p>' + esc(j.desc) + '</p>' : '') +
-      (closed ? '' : '<a href="' + esc(j.url) + '" target="_blank" rel="noopener">View the role →</a>') +
+      (closed ? '' : '<a href="' + esc(j.url) + '" target="_blank" rel="noopener"' + jobAttrs(j) + '>View the role →</a>') +
       '</div>';
   }
   function jotw(j) {
@@ -55,12 +61,12 @@
       '<p class="org">' + esc(j.org) + ' · ' + esc(j.field) + '</p>' +
       '<p class="meta">' + esc(CAT_LABEL[j.category]) + ' · ' + esc(j.meta) + '</p>' +
       '<p>' + esc(j.desc) + '</p>' +
-      (isOpen(j) ? '<a class="btn btn-teal" href="' + esc(j.url) + '" target="_blank" rel="noopener">View the role</a>' : '<p class="closed-label">Closed</p>') +
+      (isOpen(j) ? '<a class="btn btn-teal" href="' + esc(j.url) + '" target="_blank" rel="noopener"' + jobAttrs(j) + '>View the role</a>' : '<p class="closed-label">Closed</p>') +
       '</section>';
   }
   function alsoItem(j) {
     return '<li><strong>' + esc(j.title) + '</strong> · ' + esc(j.org) + ' · ' + esc(j.meta) +
-      (isOpen(j) ? ' · <a href="' + esc(j.url) + '" target="_blank" rel="noopener">View</a>' : ' · <span class="closed-label">Closed</span>') + '</li>';
+      (isOpen(j) ? ' · <a href="' + esc(j.url) + '" target="_blank" rel="noopener"' + jobAttrs(j) + '>View</a>' : ' · <span class="closed-label">Closed</span>') + '</li>';
   }
   function set(id, html) { var el = document.getElementById(id); if (el) el.innerHTML = html; }
 

@@ -64,6 +64,30 @@
 
   window.openConsent = function (e) { if (e) e.preventDefault(); showBanner(); };
 
+  /* Click events for GA4 via GTM. Only pushed once the visitor has agreed (GTM loaded). */
+  document.addEventListener('click', function (e) {
+    if (!window.__gtmLoaded) return;
+    var a = e.target.closest && e.target.closest('a, button');
+    if (!a) return;
+    var dl = window.dataLayer = window.dataLayer || [];
+    var page = document.body.getAttribute('data-page') || '';
+    if (a.getAttribute('data-job')) {
+      dl.push({
+        event: 'job_click',
+        job_org: a.getAttribute('data-job-org'),
+        job_title: a.getAttribute('data-job-title'),
+        job_category: a.getAttribute('data-job-category'),
+        issue_date: a.getAttribute('data-issue-date'),
+        featured: a.getAttribute('data-featured'),
+        page_type: page
+      });
+    } else if ((a.getAttribute('href') || '').indexOf('beehiiv.com/subscribe') !== -1) {
+      dl.push({ event: 'subscribe_click', page_type: page, link_text: (a.textContent || '').trim() });
+    } else if (a.id === 'tally-open') {
+      dl.push({ event: 'advertise_form_open', page_type: page });
+    }
+  }, true);
+
   document.addEventListener('DOMContentLoaded', function () {
     var c = read();
     if (c === 'granted') loadGA();
